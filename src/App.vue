@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <component :is='IsComponent'></component>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SelectOption from "@/components/select-option/SelectOption.vue"
+import GameBox from "@/components/game/GameBox.vue"
+import { computed } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    components : {
+      SelectOption,
+      GameBox
+    },
+    setup(){
+      let store = useStore()
+      let ShowComponent = computed(() => store.getters.ShowComponent)
+      let IsComponent = computed(() => {
+        if(ShowComponent.value == "select"){
+          return SelectOption
+        }else{
+          return GameBox
+        }
+      })
+      return {
+        ShowComponent,
+        IsComponent
+      }
+    }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
