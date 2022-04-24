@@ -18,13 +18,19 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(165, 209, 217, 0.3);
+    @media (max-width: 601px) {
+        width: calc(600px - 60px);
+        margin: 0 30px;
+    }
 }
-.header{
+
+.header {
     padding: 1rem;
     text-align: center;
     border-bottom: 1px solid rgba(165, 209, 217, 0.3);
 }
-.main{
+
+.main {
     padding: 1rem;
 }
 </style>
